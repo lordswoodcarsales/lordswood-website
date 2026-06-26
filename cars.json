@@ -1,0 +1,43 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded photos go
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "cars"
+    label: "Cars"
+    label_singular: "Car"
+    description: "Add, edit, or remove cars shown on the website."
+    files:
+      - name: "stock"
+        label: "Car stock list"
+        file: "cars/cars.json"
+        description: "All the cars on your site. Click below to add or edit."
+        fields:
+          - name: "cars"
+            label: "Cars"
+            label_singular: "Car"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.price}}"
+            fields:
+              - { name: "title", label: "Make & model", widget: "string", hint: "e.g. Ford Fiesta Zetec 1.0" }
+              - { name: "price", label: "Price", widget: "string", hint: "e.g. £5,495" }
+              - { name: "year", label: "Year / plate", widget: "string", hint: "e.g. 2016 (66)" }
+              - { name: "mileage", label: "Mileage", widget: "string", hint: "e.g. 48,000 miles" }
+              - { name: "fuel", label: "Fuel", widget: "string", default: "Petrol" }
+              - { name: "gearbox", label: "Gearbox", widget: "string", default: "Manual" }
+              - { name: "owners", label: "Owners", widget: "string", required: false, hint: "e.g. 2 owners" }
+              - { name: "mot", label: "MOT", widget: "string", required: false, hint: "e.g. MOT'd 12 months" }
+              - { name: "ulez", label: "ULEZ", widget: "string", required: false, default: "ULEZ compliant" }
+              - { name: "sold", label: "Sold?", widget: "boolean", default: false, hint: "Turn on to show a SOLD badge" }
+              - name: "photos"
+                label: "Photos"
+                widget: "list"
+                required: false
+                field: { name: "image", label: "Photo", widget: "image" }
+                hint: "Upload as many as you like. The first one is the main photo."
+              - { name: "video", label: "YouTube video link", widget: "string", required: false, hint: "Paste a YouTube link, or leave blank" }
+              - { name: "description", label: "Description", widget: "text", required: false, hint: "Write an honest description. Use the description-writer tool to generate this." }
